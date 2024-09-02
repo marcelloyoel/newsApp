@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('user_id');
             // true = aktif, false = ga aktif
-            $table->bool('status')->default(true);
+            $table->boolean('status')->default(true);
         });
     }
 

@@ -55,7 +55,7 @@
                                                 placeholder="Enter Username...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password"
+                                            <input type="password" class="form-control form-control-user" id="password-input"
                                                 name="password" placeholder="Password">
                                         </div>
                                         {{-- <div class="form-group">
@@ -65,10 +65,16 @@
                                                     Me</label>
                                             </div>
                                         </div> --}}
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" id="loginBtn" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                     </form>
+                                    <div class="mt-2 d-flex justify-content-center">
+                                        <span id="spinnerLoading"
+                                            class="spinner-border spinner-border-sm mt-15 text-black" role="status"
+                                            aria-hidden="true" style="width:1rem; height:1rem; display:none"></span>
+                                    </div>
+                                    <div class="mt-2" id="loginError" style="display:none; color:red;"></div>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="/register">Create an Account!</a>
@@ -90,6 +96,9 @@
         </div>
 
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/login.js"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/template/vendor/jquery/jquery.min.js"></script>
