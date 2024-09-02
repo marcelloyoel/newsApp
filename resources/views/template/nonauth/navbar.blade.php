@@ -39,7 +39,7 @@
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Admin Dashboard</a>
+                    <a class="nav-link" href="users">Admin Dashboard</a>
                 </li>
                 @endif
             @endauth
