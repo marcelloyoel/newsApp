@@ -1,0 +1,17 @@
+/* Fix sidebar position */
+.accordionSidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    /* z-index: 100; */
+    /* padding-top: 56px; */
+    /* overflow-y: auto; */
+    display: inline;
+    height: 100%;
+  }
+
+  /* Adjust the content to the right of the sidebar */
+  /* #content {
+    margin-left: 250px;
+  } */
