@@ -37,6 +37,8 @@
                     <div id="buyer-form">
                         <form method="POST" action="/register" enctype="multipart/form-data">
                             @csrf
+                            <div class="alertNih">
+                            </div>
                             <div class="text-left">
                                 <h1 class="h4 text-gray-900 mb-4">User Data</h1>
                             </div>
@@ -53,11 +55,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="displayName">Display Name</label>
-                                    <input type="displayName"
-                                        class="form-control @error('displayName') is-invalid @enderror" id="displayName"
-                                        value="{{ old('displayName') }}" name="displayName" required>
-                                    @error('displayName')
+                                    <label for="name">Display Name</label>
+                                    <input type="name"
+                                        class="form-control @error('name') is-invalid @enderror" id="name"
+                                        value="{{ old('name') }}" name="name" required>
+                                    @error('name')
                                         <div class="invalid-feedback mb-2">
                                             {{ $message }}
                                         </div>
@@ -96,8 +98,16 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary my-3">Register</button>
+                                <button id="submitBtn" type="submit" class="btn btn-primary my-3">Register</button>
                             </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center" style="display:none;">
+                                    <span id="spinnerLoading"
+                                        class="spinner-border spinner-border-sm mt-15 text-black" role="status"
+                                        aria-hidden="true" style="width:1rem; height:1rem; display:none"></span>
+                                </div>
+                            </div>
+                            <div class="mt-2 d-flex justify-content-center" id="tulisDisini" style="display:none"></div>
                         </form>
                     </div>
                     <hr>
@@ -108,6 +118,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/register.js"></script>
 
     {{-- <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

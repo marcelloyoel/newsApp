@@ -2,7 +2,11 @@
 @section('container')
 <div class="title text-center my-5">
     <h1 class="">Welcome to The News App</h1>
+    @auth
+    <p>What do you want to read today, {{ Auth::user()->name }} ?</p>
+    @else
     <p>What do you want to read today?</p>
+    @endauth
 </div>
 <div class="row">
     <div class="col-12 col-md-4 my-3">

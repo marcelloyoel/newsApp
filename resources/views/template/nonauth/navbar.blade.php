@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a id="monyet" class="navbar-brand" href="#">News App</a>
+    <a class="navbar-brand" href="#">News App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,7 +32,27 @@
                 <a class="dropdown-item" href="#">Investing</a>
             </div>
             </li>
+            @auth
+                @if (Auth::user()->role == 1)
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Dashboard</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin Dashboard</a>
+                </li>
+                @endif
+            @endauth
         </ul>
+        @auth
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit" class="btn btn-outline-light">
+                Log
+                Out <span data-feather="log-out"></span></button>
+        </form>
+        @else
         <a class="btn btn-outline-light " href="/login">Log In</a>
+        @endauth
     </div>
 </nav>
