@@ -52,11 +52,11 @@
                                 <td>{{ $user->created_at->timezone('Asia/Bangkok')->format('Y-m-d H:i:s') }}</td>
                                 <td>{{ $user->updated_at->timezone('Asia/Bangkok')->format('Y-m-d H:i:s') }}</td>
                                 <td class="text-center">
-                                    <a href="users/{{ $user->id }}/edit"
+                                    <a href="/users/{{ $user->id }}/edit"
                                         class="btn btn-warning btn-circle mx-2 my-2">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <form action="users/{{ $user->id }}" method="POST" class="d-inline">
+                                    <form action="/users/{{ $user->id }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger btn-circle" type="submit"

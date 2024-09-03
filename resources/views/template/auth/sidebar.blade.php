@@ -39,8 +39,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Author Dashboard:</h6>
-                <a class="collapse-item" href="/cart">Post List</a>
-                <a class="collapse-item" href="/orderList">Add New Post</a>
+                <a class="collapse-item" href="/posts">Post List</a>
+                <a class="collapse-item" href="/posts/create">Add New Post</a>
             </div>
         </div>
     </li>

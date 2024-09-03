@@ -35,11 +35,11 @@
             @auth
                 @if (Auth::user()->role == 1)
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My Dashboard</a>
+                    <a class="nav-link" href="/posts">My Dashboard</a>
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="users">Admin Dashboard</a>
+                    <a class="nav-link" href="/users">Admin Dashboard</a>
                 </li>
                 @endif
             @endauth

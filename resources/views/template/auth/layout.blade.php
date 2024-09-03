@@ -13,6 +13,17 @@
 
     <title>{{ $title }}</title>
 
+    @if (isset($trix))
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+    @endif
+
     <!-- Custom fonts for this template-->
     <link href="/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

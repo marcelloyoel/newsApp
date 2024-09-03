@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('post_to_tags', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('post_id');
+            $table->foreignId('tag_id');
             $table->timestamps();
         });
     }

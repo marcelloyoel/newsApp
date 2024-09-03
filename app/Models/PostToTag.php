@@ -10,12 +10,12 @@ class PostToTag extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = ['post_id', 'tag_id'];
     public function post(){
-        $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class);
     }
 
     public function tag(){
-        $this->belongsTo(Tag::class);
+        return $this->belongsTo(Tag::class);
     }
 }

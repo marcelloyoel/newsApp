@@ -17,7 +17,7 @@ class Post extends Model
             'slug' => [
                 'source' => 'title'
             ]
-            ];
+        ];
     }
 
     public function user(){
@@ -26,5 +26,11 @@ class Post extends Model
 
     public function postToTag(){
         return $this->hasMany(PostToTag::class);
+    }
+
+    // Biar defaultnya ga id tapi slug
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
