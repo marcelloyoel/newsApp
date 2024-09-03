@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+// use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -16,8 +18,7 @@ class UserController extends Controller
     {
         return view('admin', [
             'title' => 'List User',
-            'users' => User::all(),
-            'table' => 'ada'
+            'users' => User::where('status', '>', 0)->get(),
         ]);
     }
 
@@ -28,7 +29,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('addUser',[
+            'title' => 'Add New User',
+            'javascript'    => 'createUser.js'
+        ]);
     }
 
     /**
@@ -39,7 +43,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'username' => ['unique:users', 'required'],
+            'password' => ['required'],
+            'email' => ['unique:users', 'required'],
+            'name' => ['required'],
+        ];
+        $validatedData = $request->validate($rules);
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['status'] = $request->input('status');
+        $validatedData['role'] = $request->input('role');
+
+        // User::create($validatedData);
+        $user = new User($validatedData);
+        $user->save();
+        return redirect('/users')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -61,7 +79,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('editUser',[
+            'title' => 'Edit User',
+            'javascript'    => 'createUser.js',
+            'user'  => $user
+        ]);
     }
 
     /**
@@ -73,7 +95,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        // dd('hello');
+        $validatedData = $request->validate([
+            'username' => ['required', 'max:255', Rule::unique('users', 'username')->ignore($user->id)],
+            'email'    => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'name'     => ['required', 'string', 'max:255'],
+            'role'     => ['required', 'integer'],
+            'status'   => ['required', 'integer'],
+        ]);
+        $user->update($validatedData);
+        return redirect('/users')->with('update', 'Data berhasil diupdate!');
     }
 
     /**
@@ -84,6 +115,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->update(['status' => 0]);
+        return redirect('/users')->with('delete', 'Data berhasil dihapus!');
     }
 }

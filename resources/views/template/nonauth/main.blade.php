@@ -17,8 +17,16 @@
     <div class="container">
         @yield('container')
     </div>
+    {{-- font awesome --}}
+    <script src="https://kit.fontawesome.com/c994fb054e.js" crossorigin="anonymous"></script>
     {{-- jquery --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @if(isset($table))
+        <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script>
+            let table = new DataTable('#myTable');
+        </script>
+    @endif
     @if(isset($javascript))
     <script src="js/{{ $javascript }}"></script>
     @endif
