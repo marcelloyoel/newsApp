@@ -61,7 +61,10 @@ class PostController extends Controller
         ]);
         $validatedData['user_id'] = auth()->user()->id;
         if (empty($validatedData['excerpt'])) {
-            $validatedData['excerpt'] = Str::limit(strip_tags($request->content), 100, '...');
+            // $validatedData['excerpt'] = Str::limit(strip_tags($request->content), 100, '...');
+            $cleanContent = strip_tags($request->content); // Remove HTML tags
+            $cleanContent = html_entity_decode($cleanContent); // Decode HTML entities like &nbsp;
+            $validatedData['excerpt'] = Str::limit($cleanContent, 100, '...');
         }
         if($request->file('cover')){
             $validatedData['cover'] = $request->file('cover')->store('post-cover');

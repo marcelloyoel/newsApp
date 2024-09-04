@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -31,3 +30,5 @@ Route::resource('/users', UserController::class)->middleware('auth');
 
 Route::resource('/posts', PostController::class)->middleware('auth');
 Route::get('/createSlug', [PostController::class, 'createSlug'])->middleware('auth');
+
+Route::get('{post:slug}', [HomeController::class, 'show']);

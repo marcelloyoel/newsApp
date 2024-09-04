@@ -6,18 +6,21 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item {{ $active === 'home' ? 'active' : '' }}">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ $active === 'author' ? 'active' : '' }}">
             <a class="nav-link" href="#">Author</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown {{ $active === 'tags' ? 'active' : '' }}">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                 Tags
             </a>
             <div class="dropdown-menu scrollable-dropdown">
-                <a class="dropdown-item" href="#">Politics</a>
+                @foreach ($tags as $tag)
+                    <a class="dropdown-item" href="/?tag={{ $tag->slug }}">{{ $tag->name }}</a>
+                @endforeach
+                {{-- <a class="dropdown-item" href="#">Politics</a>
                 <a class="dropdown-item" href="#">Finance</a>
                 <a class="dropdown-item" href="#">Technology</a>
                 <a class="dropdown-item" href="#">Health</a>
@@ -29,7 +32,7 @@
                 <a class="dropdown-item" href="#">Environment</a>
                 <a class="dropdown-item" href="#">Travel</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Investing</a>
+                <a class="dropdown-item" href="#">Investing</a> --}}
             </div>
             </li>
             @auth

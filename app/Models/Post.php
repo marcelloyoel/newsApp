@@ -33,4 +33,30 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    public function scopeActive($query){
+        return $query->where('status', true);
+    }
+
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('content', 'like', '%' . $search . '%');
+            });
+        });
+
+        $query->when($filters['tag'] ?? false, function ($query, $tag) {
+            return $query->whereHas('postToTag.tag', function ($query) use ($tag) {
+                $query->where('slug', $tag);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            //bakal return pake whereHas dengan parameter relational-nya. Disini ada category dan author
+            return $query->whereHas('user', function ($query) use ($author) {
+                $query->where('name', $author);
+            });
+        });
+    }
 }
