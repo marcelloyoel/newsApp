@@ -56,11 +56,15 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'slug'  => 'required',
             'excerpt'   => 'max:100',
+            'cover'     => 'image|file|max:5000',
             'content'   => 'required'
         ]);
         $validatedData['user_id'] = auth()->user()->id;
         if (empty($validatedData['excerpt'])) {
             $validatedData['excerpt'] = Str::limit(strip_tags($request->content), 100, '...');
+        }
+        if($request->file('cover')){
+            $validatedData['cover'] = $request->file('cover')->store('post-cover');
         }
         DB::beginTransaction();
         try {
@@ -132,7 +136,8 @@ class PostController extends Controller
             'post'  => $post,
             'tags'  => Tag::all(),
             'selectedTags'  => $genres,
-            'trix'  => 'ada'
+            'trix'  => 'ada',
+            'javascript'    => 'createpost.js'
         ]);
     }
 
@@ -148,12 +153,16 @@ class PostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'excerpt'   => 'max:100',
+            'cover'     => 'image|file|max:5000',
             'content'   => 'required'
         ];
         if($post->slug != $request->slug){
             $rules['slug']  = 'required|unique:posts';
         }
         $validatedData =  $request->validate($rules);
+        if($request->file('cover')){
+            $validatedData['cover'] = $request->file('cover')->store('post-cover');
+        }
         $validatedData['user_id'] = auth()->user()->id;
         if (empty($validatedData['excerpt'])) {
             $validatedData['excerpt'] = Str::limit(strip_tags($request->content), 100, '...');
@@ -193,5 +202,9 @@ class PostController extends Controller
     public function createSlug(Request $request){
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function getGenres(Post $post){
+
     }
 }

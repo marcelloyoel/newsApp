@@ -27,11 +27,11 @@
             </div>
             {{-- <a href="" class="btn btn-danger mb-2">Delete this post <span data-feather="x-circle"></span></a> --}}
 
-            @if ($post->image)
-                <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" class="img-fluid">
+            @if ($post->cover)
+                <img src="{{ asset('storage/' . $post->cover) }}" class="card-img-top mt-4 d-block mx-auto" class="img-fluid mt-5">
             @else
-                {{-- <img src="https://source.unsplash.com/1200x400?work" class="card-img-top"
-                    alt="work" class="img-fluid mt-5"> --}}
+                <img src="{{ asset('img/default.jpeg') }}" class="card-img-top mt-4 d-block mx-auto"
+                    alt="work" class="img-fluid mt-5">
             @endif
             <article>
                 <p>{!! $post->content !!}</p>

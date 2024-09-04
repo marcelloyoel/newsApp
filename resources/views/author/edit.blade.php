@@ -62,6 +62,23 @@
                     @enderror
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="cover"><strong>Upload Cover Image</strong></label>
+                    @if ($post->cover)
+                    <img src="{{ asset('storage/' . $post->cover) }}" class="img-preview img-fluid d-block w-50 mb-2">
+                    @else
+                    <img src="" class="img-preview img-fluid d-block w-50 mb-2">
+                    @endif
+
+                    <input type="file" class="form-control @error('cover') is-invalid @enderror" id="cover" name="cover" onchange="previewImage()">
+                    @error('cover')
+                        <div class="invalid-feedback mb-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
             <div class="form-row mt-2">
                 <div class="form-group col-12">
                     <label for="x"><strong>Content</strong></label>
