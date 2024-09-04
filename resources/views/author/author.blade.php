@@ -20,20 +20,25 @@
     <div class="row">
         @foreach ($posts as $post)
         <div class="col-12 col-md-4 my-3">
-            <div class="card pt-3">
+            <div class="card h-100"> <!-- Add h-100 to make all cards the same height -->
                 @if ($post->cover)
-                    <img src="{{ asset('storage/' . $post->cover) }}" class="card-img-top mt-4 d-block mx-auto" class="img-fluid">
+                    <img src="{{ asset('storage/' . $post->cover) }}" class="card-img-top mt-4 d-block mx-auto" alt="Post Cover" />
                 @else
-                    <img src="{{ asset('img/default.jpeg') }}" class="card-img-top mt-4 d-block mx-auto"
-                        alt="default" class="img-fluid mt-5">
+                    <img src="{{ asset('img/default.jpeg') }}" class="card-img-top mt-4 d-block mx-auto" alt="default" />
                 @endif
-                <div class="card-body">
-                    <div class="post-content mb-4">
+                <style>
+                    .card-img-top {
+                        height: 200px; /* Set a consistent height for images */
+                        object-fit: cover; /* Ensures the image covers the space without distortion */
+                    }
+                </style>
+                <div class="card-body d-flex flex-column"> <!-- Use d-flex and flex-column -->
+                    <div class="post-content mb-4 flex-grow-1"> <!-- Add flex-grow-1 to allow the content to take up space -->
                         <h5 class="card-title"><strong>{{ $post->title }}</strong></h5>
                         <p class="card-text">{{ $post->excerpt }}</p>
-                        <p>{{ $post->created_at->diffForHumans() }}</p>
                     </div>
                     <div class="twoButtons">
+                        <p>{{ $post->created_at->diffForHumans() }}</p>
                         <a href="/posts/{{ $post->slug }}" class="btn btn-primary w-100 mb-2">Detail</a>
                         <form action="/posts/{{ $post->slug }}" method="POST">
                             @method('delete')

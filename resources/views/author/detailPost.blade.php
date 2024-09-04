@@ -36,6 +36,15 @@
             <article>
                 <p>{!! $post->content !!}</p>
             </article>
+            <style>
+                article img {
+                    max-width: 100%; /* Ensure images do not exceed the width of the parent container */
+                    height: auto; /* Maintain the aspect ratio */
+                    display: block; /* Remove bottom space (optional) */
+                    margin-left: auto; /* Center align if needed */
+                    margin-right: auto; /* Center align if needed */
+                }
+            </style>
             {{-- kita pake kurung satu dan tanda kurung biar ga pake htmlspecialchars sehingga html yang diisi di database dapat dibaca --}}
 
             <a class="d-block my-2" href="/posts">Back to post</a>
