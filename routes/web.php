@@ -26,9 +26,14 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'doRegister']);
 
-Route::resource('/users', UserController::class)->middleware('auth');
+Route::group(['middleware' => 'auth'], function (){
+    Route::resource('/users', UserController::class)->middleware('admin');
+    Route::group(['middleware' => 'author'], function (){
+        Route::resource('/posts', PostController::class)->middleware('auth');
+        Route::get('/createSlug', [PostController::class, 'createSlug'])->middleware('auth');
+    });
+});
 
-Route::resource('/posts', PostController::class)->middleware('auth');
-Route::get('/createSlug', [PostController::class, 'createSlug'])->middleware('auth');
+
 
 Route::get('{post:slug}', [HomeController::class, 'show']);

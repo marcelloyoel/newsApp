@@ -16,7 +16,15 @@
                 <p>{!! $post->content !!}</p>
             </article>
             {{-- kita pake kurung satu dan tanda kurung biar ga pake htmlspecialchars sehingga html yang diisi di database dapat dibaca --}}
-
+            <style>
+                article img {
+                    max-width: 100%; /* Ensure images do not exceed the width of the parent container */
+                    height: auto; /* Maintain the aspect ratio */
+                    display: block; /* Remove bottom space (optional) */
+                    margin-left: auto; /* Center align if needed */
+                    margin-right: auto; /* Center align if needed */
+                }
+            </style>
             <a class="d-block my-2" href="/">Back to post</a>
         </div>
     </div>
