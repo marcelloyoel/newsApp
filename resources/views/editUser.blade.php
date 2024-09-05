@@ -41,14 +41,14 @@
                         </div>
                     @enderror
                 </div>
-                <div class="form-group col-md-4 col-12">
+                <div class="form-group col-md-4 col-12 {{ $user->id == auth()->user()->id ? 'd-none' : '' }}">
                     <label for="role">Role</label>
                     <select class="form-control" id="role" name="role">
                         <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Author</option>
                         <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Admin</option>
                     </select>
                 </div>
-                <div class="form-group col-md-4 col-12">
+                <div class="form-group col-md-4 col-12 {{ $user->id == auth()->user()->id ? 'd-none' : '' }}">
                     <label for="status">Status</label>
                     <select class="form-control" id="status" name="status">
                         <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Aktif</option>
