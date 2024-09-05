@@ -1,4 +1,4 @@
-Fitur fitur yang dikerjakan:
+<h3>Fitur fitur yang dikerjakan:</h3>
 1. User Authentication -> Login dan Log out
 2. User Management -> Membuat Dashboard khusus admin untuk melakukan CRUD semua akun yang terdaftar dalam database
 3. News CMS -> Membuat dashboard khusus author untuk melakukan CRUD semua post (menggunakan Trix) yang mana setiap post memiliki title, content, publication date, dan multiple tags
