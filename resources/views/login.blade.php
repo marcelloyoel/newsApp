@@ -77,6 +77,9 @@
                                     <div class="mt-2" id="loginError" style="display:none; color:red;"></div>
                                     <hr>
                                     <div class="text-center">
+                                        <a class="small" href="/forgot-password">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
                                         <a class="small" href="/register">Create an Account!</a>
                                     </div>
 
