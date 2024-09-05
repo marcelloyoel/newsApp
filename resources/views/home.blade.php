@@ -35,7 +35,11 @@
         @foreach ($posts as $post)
         <div class="col-12 col-md-4 my-3 d-flex align-items-stretch">
             <div class="card shadow-sm">
+                @if ($post->cover)
                 <img src="{{ asset('storage/' . $post->cover) }}" class="card-img-top" alt="Post Image">
+                @else
+                <img src="{{ asset('img/default.jpeg') }}" class="card-img-top" alt="Post Image">
+                @endif
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p>
