@@ -55,7 +55,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug'  => 'required',
-            'excerpt'   => 'max:100',
+            'excerpt'   => 'max:104',
             'cover'     => 'image|file|max:5000',
             'content'   => 'required'
         ]);
@@ -155,7 +155,7 @@ class PostController extends Controller
     {
         $rules = [
             'title' => 'required|max:255',
-            'excerpt'   => 'max:100',
+            'excerpt'   => 'max:104',
             'cover'     => 'image|file|max:5000',
             'content'   => 'required'
         ];

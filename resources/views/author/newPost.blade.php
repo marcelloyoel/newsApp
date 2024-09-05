@@ -25,12 +25,12 @@
                         </div>
                     @enderror
                 </div>
-                <div class="form-group col-12">
+                <div class="form-group col-12" style="display: none">
                     <label for="slug"><strong>Slug</strong></label>
                     <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" value="{{ old('slug') }}" name="slug" required>
                 </div>
             </div>
-            <div class="form-row mt-2">
+            <div class="form-row mt-2" style="display: none">
                 <div class="form-group col-12">
                     <label for="excerpt"><strong>Ringkasan / Sinopsis</strong></label>
                     <input placeholder="Buatlah ringkasan dari tulisanmu disini" type="text" class="form-control @error('excerpt') is-invalid @enderror" id="excerpt" value="{{ old('excerpt') }}" name="excerpt">
