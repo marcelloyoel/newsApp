@@ -7,5 +7,5 @@
     <li>Implement User Role With Different Permission -> Membuat middleware Admin dan Author, sehingga link khusus Admin tidak dapat diakses oleh Author dan juga sebaliknya</li>
     <li>Add Cover Image Upload Functionality -> Membuat setiap post dapat memiliki gambar</li>
     <li>Implement Search and Filter Options for News Article 
--> Membuat filter menggunakan Query Scope untuk menampilkan post baik berdasarkan Tags atau Author maupun Tags dan Author</li>
+-> Membuat filter menggunakan Query Scope untuk menampilkan post baik berdasarkan Tags, Author, atau Judul maupun judul dan Author</li>
 </ol>
