@@ -1,5 +1,5 @@
 <h3>Fitur fitur yang dikerjakan:</h3>
-<0l>
+<ol>
     <li>User Authentication -> Login dan Log out</li> 
     <li>User Management -> Membuat Dashboard khusus admin untuk melakukan CRUD semua akun yang terdaftar dalam database</li>
     <li>News CMS -> Membuat dashboard khusus author untuk melakukan CRUD semua post (menggunakan Trix) yang mana setiap post memiliki title, content, publication date, dan multiple tags</li>
@@ -8,4 +8,4 @@
     <li>Add Cover Image Upload Functionality -> Membuat setiap post dapat memiliki gambar</li>
     <li>Implement Search and Filter Options for News Article 
 -> Membuat filter menggunakan Query Scope untuk menampilkan post baik berdasarkan Tags atau Author maupun Tags dan Author</li>
-</0l>
+</ol>
