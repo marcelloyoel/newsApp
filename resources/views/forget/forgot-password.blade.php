@@ -44,9 +44,12 @@
                                 <form action="{{ route('password.email') }}" method="POST" class="user">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
+                                        <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
                                             id="email" aria-describedby="emailHelp"
                                             placeholder="Enter Email Address..." name="email">
+                                            @error('email')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Reset Password
