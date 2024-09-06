@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -39,7 +38,6 @@ class AuthController extends Controller
 
     public function doRegister(Request $request)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users,username'],
@@ -48,21 +46,11 @@ class AuthController extends Controller
         ]);
 
         try {
-            // Hash the password using bcrypt
             $validatedData['password'] = bcrypt($validatedData['password']);
-
-            // Create the user
             $user = User::create($validatedData);
-
-            // Automatically log in the user after registration
             Auth::login($user);
-
-            // Regenerate session
             $request->session()->regenerate();
-
-            // Return success response
-            // return response()->json(['success' => true, 'message' => 'Registration successful', 'user' => $user], 201);
-            return redirect('/')->with('success', 'Data berhasil ditambahkan!');
+            return redirect('/')->with('success', 'Berhasil Membuat Akun!');
 
         } catch (\Exception $e) {
             // Return error response in case of any exception
@@ -114,7 +102,7 @@ class AuthController extends Controller
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {
                 $user->forceFill([
-                    'password' => Hash::make($password),
+                    'password' => bcrypt($password),
                 ])->save();
 
                 Auth::login($user);

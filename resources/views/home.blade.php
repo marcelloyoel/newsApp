@@ -1,5 +1,18 @@
 @extends('template.content')
 @section('container')
+<div class="row justify-content-center mt-3">
+    <div class="col-12 col-md-8">
+        @if (session()->has('success'))
+        <div class="alert alert-success mt-2" role="alert">
+            {{ session('success') }}
+        </div>
+        @elseif(session()->has('status'))
+        <div class="alert alert-success mt-2" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
+    </div>
+</div>
 <div class="title text-center my-5">
     <h1 class="">Welcome to The News App</h1>
     @auth
