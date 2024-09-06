@@ -90,33 +90,8 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email|exists:users,email',
         ]);
-        // $status = Password::sendResetLink(
-        //     $request->only('email')
-        // );
-
-        // return $status === Password::RESET_LINK_SENT
-        //     ? back()->with(['status' => __($status)])
-        //     : back()->withErrors(['email' => __($status)]);
-
-        // Cara Kedua
-
-        // $user = User::where('email', $request->email)->first();
-        // if ($user) {
-        //     // Ini job-nya
-        //     SendResetPasswordEmail::dispatch($user);
-        //     return back()->with('status', 'Password reset link has been sent to your email address.');
-        // }
-
-        // return back()->withErrors(['email' => 'We couldn’t find a user with that email address.']);
-
-        // cara ketiga (berhasil)
-        // Dispatch the Job to send the reset link email asynchronously
         $user = User::where('email', $request->email)->first();
-
-        // Dispatch the job to send the reset link
-        // SendResetLinkJob::dispatch($user);
         dispatch(new SendResetLinkJob($user));
-
         return back()->with(['status' => 'We have emailed your password reset link!']);
     }
 
@@ -142,7 +117,6 @@ class AuthController extends Controller
                     'password' => Hash::make($password),
                 ])->save();
 
-                // Optionally, log the user in after password reset
                 Auth::login($user);
             }
         );
