@@ -8,4 +8,5 @@
     <li>Add Cover Image Upload Functionality -> Membuat setiap post dapat memiliki gambar</li>
     <li>Implement Search and Filter Options for News Article 
 -> Membuat filter menggunakan Query Scope untuk menampilkan post baik berdasarkan Tags, Author, atau Judul maupun judul dan Author</li>
+    <li>Forget Password Using Job Query Mail</li>
 </ol>
